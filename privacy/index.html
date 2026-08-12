@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Groceri Privacy Policy</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    margin: 0 auto;
+    max-width: 38rem;
+    padding: 3rem 1.25rem 5rem;
+    font: 1rem/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+  h2 { font-size: 1.15rem; margin-top: 2.25rem; }
+  .updated { color: #6b7280; margin-top: 0; }
+  footer { margin-top: 3rem; color: #6b7280; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+
+<h1>Groceri Privacy Policy</h1>
+<p class="updated">Last updated 12 August 2026</p>
+
+<p>
+  Groceri is a shopping app that keeps your trips, items, photos and pantry on your own device
+  and in your own iCloud account. This policy describes everything the app collects and everything
+  it sends anywhere.
+</p>
+
+<h2>Everything happens on your device, except Scan Item</h2>
+<p>
+  Your trips, items, prices, photos, checklists and pantry are stored on your device and sync
+  through your own private iCloud database, which only you can read. There is no Groceri account
+  and no sign-in. Groceri makes no network request of its own until you tap Scan Item.
+</p>
+
+<h2>What happens when you scan a price tag</h2>
+<p>
+  When you tap Scan Item, frame a price tag and fire the shutter, the cropped photo is sent to
+  Groceri's own server, which passes it to OpenAI to read the name and price off the tag. The
+  reading comes back to your device and is filled into the Add Item sheet for you to check.
+</p>
+<p>
+  Groceri keeps nothing. The photo and the reading exist on Groceri's server only for the seconds
+  the request is in flight. They are never written to storage and never logged, on success or on
+  failure. OpenAI keeps the photo no longer than 30 days for abuse monitoring, processes it in the
+  United States, and does not use it to train its models.
+</p>
+<p>
+  The photo itself stays on your device as the item's photo, like any other photo you add.
+</p>
+
+<h2>The anonymous identifier that enforces the scan allowance</h2>
+<p>
+  Scanning is free and metered. To count scans against one installation of the app, Groceri's
+  server stores an anonymous identifier generated on your device by Apple's App Attest, together
+  with the count of scans used and when the count resets. That identifier belongs to one
+  installation of Groceri. It is not linked to you, to your name, to your Apple Account, to your
+  iCloud data or to any purchase, it is not shared with anyone, and it is deleted after 90 days
+  without a scan. Groceri's server never stores your IP address, and its logs record only the
+  outcome of a request, never the identifier.
+</p>
+
+<h2>No tracking, no analytics, no advertising</h2>
+<p>
+  Groceri contains no tracking, no analytics, no advertising and no third-party software
+  development kits that collect data. Nothing about you or your shopping is ever sold or shared
+  with data brokers.
+</p>
+
+<h2>Children</h2>
+<p>
+  Groceri has no accounts and collects no personal information from anyone, including children.
+</p>
+
+<h2>Changes to this policy</h2>
+<p>
+  This policy lives in Groceri's source repository next to the code it describes, so every change
+  to it is a public, reviewable change. The date at the top is the date it last changed.
+</p>
+
+<h2>Contact</h2>
+<p>
+  Questions about this policy can be raised at
+  <a href="https://github.com/luojiahai/Groceri/issues">github.com/luojiahai/Groceri/issues</a>.
+</p>
+
+<footer>Groceri &middot; <a href="https://github.com/luojiahai/Groceri">Source</a></footer>
+
+</body>
+</html>
