@@ -33,10 +33,11 @@
 <p>
   Your trips, items, prices, photos, checklists and pantry are stored on your device and sync
   through your own private iCloud database, which only you can read. There is no Groceri account
-  and no sign-in. Groceri reaches a server of its own for three things only: reading a price tag
-  when you tap Scan Item, showing how many scans you have left when you open the Me tab, and
-  recording scans you buy. Everything else that leaves your device goes to Apple, for iCloud sync
-  and for the App Store.
+  and no sign-in. The app calls a server of its own for five things: getting the short-lived pass
+  it needs before it can call at all, reading a price tag when you tap Scan Item, showing how many
+  scans you have left when you open the Me tab, recording scans you buy, and restoring your
+  purchases when you ask it to. Everything else that leaves your device goes to Apple, for iCloud
+  sync and for the App Store.
 </p>
 
 <h2>What happens when you scan a price tag</h2>
@@ -60,15 +61,30 @@
   Scanning is metered. Your first 20 scans are free, and after that you can buy more scans or
   subscribe. To keep the count, Groceri's server stores your balance under an identifier Apple
   issues for your Apple Account. That identifier is not your name and not your email address, and
-  it tells Groceri nothing about you beyond which scans and purchases in Groceri are yours. The
-  record is opened the first time the app talks to the server, whether you ever buy anything or
-  not.
+  everything the server knows under it is listed in this section. The record is opened the first
+  time the app talks to the server, whether you ever buy anything or not.
 </p>
 <p>
   Apple takes the payment. Groceri never sees your card, your name or your address, and never asks
-  for them. What reaches Groceri's server is a receipt Apple signed, naming what was bought. The
-  server keeps what was bought, how many scans it credited, and the balance you have left. If a
-  purchase is refunded, the server takes back the scans that purchase credited.
+  for them. What reaches Groceri's server is a receipt Apple signed, naming what was bought.
+</p>
+<p>
+  For each purchase the server keeps what was bought, Apple's transaction number for it, how many
+  scans it credited, and the date of a refund if one is ever made. Alongside those it keeps your
+  balance, how many of your first 20 scans are left and when they were issued, whether a
+  subscription is running and when it expires, and a running count of the scans and the failed
+  reads from your last 24 hours.
+</p>
+<p>
+  Apple also tells Groceri's server directly when you buy something, when a purchase is refunded,
+  and when a subscription renews, lapses or is cancelled. Those messages are signed by Apple, name
+  the same Apple Account identifier, and describe the purchase they are about. They are how your
+  balance stays right while the app is closed.
+</p>
+<p>
+  If a purchase is refunded, the server takes back the scans that purchase credited. If you had
+  already spent them, your balance goes below zero, and the scans you owe come out of the next
+  scans you buy before you can use them.
 </p>
 <p>
   That identifier is never deleted. A balance you paid for has to outlive deleting the app and
@@ -76,8 +92,8 @@
 </p>
 <p>
   Groceri's server asks Apple about your own purchases, using the identifier Apple issued for them.
-  That is the only place any of it goes. Nothing about what you scan or buy is sold or shared with
-  anyone.
+  Apple is the only place your purchases and your balance ever go. None of it is sold, and none of
+  it is shared with advertisers or data brokers.
 </p>
 
 <h2>The anonymous identifier that proves the app is genuine</h2>
@@ -88,8 +104,9 @@
   linked to you, to your name, to your iCloud data or to anything you have bought.
 </p>
 <p>
-  The server touches it only when the app asks for a new pass to use the scan service. Ninety days
-  after the last time the app asked, the server deletes it and everything stored with it.
+  The server touches it only when the app asks for a new pass, which the app needs before it can
+  scan, read your balance, record a purchase or restore one. Ninety days after the last time the
+  app asked, the server deletes it and everything stored with it.
 </p>
 <p>
   It is never stored beside the Apple Account identifier above. The two are never written into the
