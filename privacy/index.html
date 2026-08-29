@@ -21,7 +21,7 @@
 <body>
 
 <h1>Groceri Privacy Policy</h1>
-<p class="updated">Last updated 12 August 2026</p>
+<p class="updated">Last updated 30 August 2026</p>
 
 <p>
   Groceri is a shopping app that keeps your trips, items, photos and pantry on your own device
@@ -29,11 +29,15 @@
   it sends anywhere.
 </p>
 
-<h2>Everything happens on your device, except Scan Item</h2>
+<h2>Everything happens on your device, except scanning and buying scans</h2>
 <p>
   Your trips, items, prices, photos, checklists and pantry are stored on your device and sync
   through your own private iCloud database, which only you can read. There is no Groceri account
-  and no sign-in. Groceri makes no network request of its own until you tap Scan Item.
+  and no sign-in. The app calls a server of its own for five things: getting the short-lived pass
+  it needs before it can call at all, reading a price tag when you tap Scan Item, showing how many
+  scans you have left when you open the Me tab, recording scans you buy, and restoring your
+  purchases when you ask it to. Everything else that leaves your device goes to Apple, for iCloud
+  sync and for the App Store.
 </p>
 
 <h2>What happens when you scan a price tag</h2>
@@ -52,15 +56,81 @@
   The photo itself stays on your device as the item's photo, like any other photo you add.
 </p>
 
-<h2>The anonymous identifier that enforces the scan allowance</h2>
+<h2>The identifier that carries your scan balance</h2>
 <p>
-  Scanning is free and metered. To count scans against one installation of the app, Groceri's
-  server stores an anonymous identifier generated on your device by Apple's App Attest, together
-  with the count of scans used and when the count resets. That identifier belongs to one
-  installation of Groceri. It is not linked to you, to your name, to your Apple Account, to your
-  iCloud data or to any purchase, it is not shared with anyone, and it is deleted after 90 days
-  without a scan. Groceri's server never stores your IP address, and its logs record only the
-  outcome of a request, never the identifier.
+  Scanning is metered. Your first 20 scans are free, and after that you can buy more scans or
+  subscribe. To keep the count, Groceri's server stores your balance under an identifier Apple
+  issues for your Apple Account. That identifier is not your name and not your email address, and
+  everything the server stores under it is listed in this section. The record is opened the first
+  time the app talks to the server, whether you ever buy anything or not.
+</p>
+<p>
+  Apple takes the payment. Groceri never sees your card, your name or your address, and never asks
+  for them. What reaches Groceri's server is a receipt Apple signed, naming what was bought. That
+  receipt also names the price you paid, the currency and the country store you bought from.
+  Nothing in the server ever looks at those three. No line of code reads them, and none of them is
+  written down.
+</p>
+<p>
+  For each purchase the server keeps what was bought, Apple's transaction number for it, how many
+  scans it credited, and the date of a refund if one is ever made. Alongside those it keeps your
+  balance, how many of your first 20 scans are left and when they were issued, whether a
+  subscription is running, how many scans a day it allows and when it expires, and a running count
+  of the scans and the failed reads from your last 24 hours, with the time that 24 hours started.
+</p>
+<p>
+  It keeps three dates for its own bookkeeping, so it does not ask Apple the same question more
+  often than it has to. They are the last time it went through your whole purchase history, the
+  last time it ran a refund check of its own, and the last time you tapped Restore Purchases. These
+  are last times, not first times. Tapping Restore Purchases does that work again and moves the
+  dates with it. When Apple tells the server about a refund itself, the server checks without
+  recording that it checked, so the refund date is not a record of every look.
+</p>
+<p>
+  If a subscription is cancelled the server also keeps what that subscription was, so it can put it
+  back if the cancellation is reversed. That is the whole of it.
+</p>
+<p>
+  Apple also tells Groceri's server directly when you buy something, when a purchase is refunded,
+  and when a subscription renews, lapses or is cancelled. Those messages are signed by Apple, name
+  the same Apple Account identifier, and describe the purchase they are about. They are how your
+  balance stays right while the app is closed.
+</p>
+<p>
+  If a purchase is refunded, the server takes back the scans that purchase credited. If you had
+  already spent them, your balance goes below zero, and the scans you owe come out of the next
+  scans you buy before you can use them.
+</p>
+<p>
+  That identifier is never deleted. A balance you paid for has to outlive deleting the app and
+  reinstalling it, and the same record is what stops the 20 free scans being claimed over and over.
+</p>
+<p>
+  Groceri's server asks Apple about your own purchases, using the identifier Apple issued for them.
+  Apple is the only place your purchases and your balance ever go. None of it is sold, and none of
+  it is shared with advertisers or data brokers.
+</p>
+
+<h2>The anonymous identifier that proves the app is genuine</h2>
+<p>
+  Groceri's server has to know it is talking to the real Groceri app on a real device, and not to
+  something pretending to be it. Your device generates an anonymous identifier through Apple's App
+  Attest, and Groceri's server stores it with the public key and counter that go with it. It is not
+  linked to you, to your name, to your iCloud data or to anything you have bought.
+</p>
+<p>
+  The server touches it only when the app asks for a new pass, which the app needs before it can
+  scan, read your balance, record a purchase or restore one. Ninety days after the last time the
+  app asked, the server deletes it and everything stored with it.
+</p>
+<p>
+  It is never stored beside the Apple Account identifier above. The two are never written into the
+  same record and never appear in the same log line. One part of the server sees both for as long
+  as it takes to check them, and it writes neither down.
+</p>
+<p>
+  Groceri's server never reads or stores your IP address. Its logs record what a request was and
+  how it ended, never either identifier.
 </p>
 
 <h2>No tracking, no analytics, no advertising</h2>
@@ -72,13 +142,14 @@
 
 <h2>Children</h2>
 <p>
-  Groceri has no accounts and collects no personal information from anyone, including children.
+  Groceri has no accounts and no sign-in, and it asks nobody for a name, an email address or a date
+  of birth. What you type into Groceri stays on your device and in your own iCloud account.
 </p>
 
 <h2>Changes to this policy</h2>
 <p>
-  This policy lives in Groceri's source repository next to the code it describes, so every change
-  to it is a public, reviewable change. The date at the top is the date it last changed.
+  This policy lives in a public repository, so every change to it is a public, reviewable change.
+  The date at the top is the date it last changed.
 </p>
 
 <h2>Contact</h2>
