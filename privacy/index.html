@@ -61,19 +61,28 @@
   Scanning is metered. Your first 20 scans are free, and after that you can buy more scans or
   subscribe. To keep the count, Groceri's server stores your balance under an identifier Apple
   issues for your Apple Account. That identifier is not your name and not your email address, and
-  everything the server knows under it is listed in this section. The record is opened the first
+  everything the server stores under it is listed in this section. The record is opened the first
   time the app talks to the server, whether you ever buy anything or not.
 </p>
 <p>
   Apple takes the payment. Groceri never sees your card, your name or your address, and never asks
-  for them. What reaches Groceri's server is a receipt Apple signed, naming what was bought.
+  for them. What reaches Groceri's server is a receipt Apple signed, naming what was bought. That
+  receipt also names the price you paid, the currency and the country store you bought from. The
+  server reads those and stores none of them.
 </p>
 <p>
   For each purchase the server keeps what was bought, Apple's transaction number for it, how many
   scans it credited, and the date of a refund if one is ever made. Alongside those it keeps your
   balance, how many of your first 20 scans are left and when they were issued, whether a
-  subscription is running and when it expires, and a running count of the scans and the failed
-  reads from your last 24 hours.
+  subscription is running, how many scans a day it allows and when it expires, and a running count
+  of the scans and the failed reads from your last 24 hours.
+</p>
+<p>
+  It keeps three dates for its own bookkeeping, so it does not ask Apple the same question more
+  often than it has to: when it first went through your purchase history, when it last looked for
+  refunds, and when you last tapped Restore Purchases. If a subscription is cancelled it also keeps
+  what that subscription was, so it can put it back if the cancellation is reversed. That is the
+  whole of it.
 </p>
 <p>
   Apple also tells Groceri's server directly when you buy something, when a purchase is refunded,
